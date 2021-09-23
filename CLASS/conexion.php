@@ -1,21 +1,38 @@
 <?php
-    class conexion {
-        private $conect;
+    class Conectar{
+        private $host = 'localhost';
+        private $user = 'root';
+        private $pass = '';
+        private $dbName = 'dbdukon';
 
-            public function_construct(){
-            $connectionString = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";.DB_CHARSET.";
+        //Método para conectarnos a la BD
+
+        public function con(){
             try {
-                $this->conect = new PDO($connectionString, DB_USER, DB_PASSWORD);
-                $this->conect = setAttribute(PDO::ATT_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $con = new PDO("mysql:host=".$this->host.";dbname=".$this->dbName, $this->user, $this->pass);
+                $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $con->query("SET NAMES 'utf8");
+
+                return $con;
 
             } catch (PDOException $e) {
-                $this->conect = 'Error de conexión';
                 echo "ERROR: ".$e->getMessage();
             }
         }
+        public static function ruta(){
+            return "https://localhost/MELO/DUKON/";
+        }
 
-        public function conect(){
-        return $this->conect;
+        public function comillas_inteligentes($valor){
+        //Retirar las barras
+            if (get_magic_quotes_gpc()){
+                $valor = stripslashes($valor);
+            }
+            //Colocar comillas si no es entero
+            if (!is_numeric($valor)){
+                $valor = "'".mysql_real_escape_string($valor)."'";
+            }
+            return $valor;
         }
     }
 ?>

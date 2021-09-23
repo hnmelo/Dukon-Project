@@ -10,4 +10,4 @@
     const DB_PASSWORD = "";
     const DB_CHARSET = "charset=utf8";
 
-?>
+?> 
