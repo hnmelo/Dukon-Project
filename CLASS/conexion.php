@@ -1,5 +1,5 @@
 <?php
-    class conexion{
+    class conexion {
         private $conect;
 
             public function_construct(){
