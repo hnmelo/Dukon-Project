@@ -3,7 +3,7 @@
     
     const BASE_URL ="http://localhost/MELO/DUKON%NUEVOOOO/index.php";
     
-    //Datos de conexión a Base de Datos
+    //Datos de conexión a Base de Datos//prueba de github local jiji
     const DB_HOST = "localhost";
     const DB_NAME = "dbdukon";
     const DB_USER = "root";
