@@ -1,0 +1,186 @@
+CREATE DATABASE dbdukon;
+
+USE dbdukon;
+
+CREATE TABLE `documentos` (
+    `doc_cod` int(11) NOT NULL,
+    `doc_consecutivo` int(11) NOT NULL,
+    `doc_descrip` varchar(200) NOT NULL,
+    `doc_afecaja` varchar(1) NOT NULL,
+    `doc_afeinvent` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `documentos` (`doc_cod`, `doc_consecutivo`, `doc_descrip`, `doc_afecaja`, `doc_afeinvent`) VALUES
+(1, 250, 'FACTURA DE VENTAS', '+', '-'),
+(2, 350, 'REMISIÓN ENTRADA', 'N', '+'),
+(3, 450, 'DEVOLUCIONES', '-', '+'),
+(4, 550, 'REMISIÓN SALIDA', 'N', '-'),
+(5, 650, 'INVENTARIO INICIAL', 'N', '+');
+
+CREATE TABLE `envio` (
+    `env_cod` int(11) NOT NULL,
+    `env_idtrans` int(11) NOT NULL,
+    `env_idemple` int(11) NOT NULL,
+    `env_empre` varchar(45) NOT NULL,
+    `env_guia` varchar(20) NOT NULL,
+    `env_tel` int(11) NOT NULL,
+    `env_costo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `productos` (
+    `pro_cod` int(11) NOT NULL,
+    `pro_idtipro` int(11) NOT NULL,
+    `pro_nomb` varchar(45) NOT NULL,
+    `pro_CantDisponible` int(11) NOT NULL,
+    `pro_saldoInicial` int(11) NOT NULL,
+    `pro_stockMax` int(11) NOT NULL,
+    `pro_stockMin` int(11) NOT NULL,
+    `pro_Valor` int(11) NOT NULL,
+    `pro_image` varchar(200) NOT NULL,
+    `pro_entrada` int(11) NOT NULL,
+    `pro_salidas` int(11) NOT NULL,
+    `pro_saldo` int(11) NOT NULL,
+    `pro_estado` varchar(80) NOT NULL,
+    `pro_garant` int(2) NOT NULL,
+    `pro_referencia` varchar(500) NOT NULL,
+    `pro_observac` varchar(700) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `rol` (
+    `rol_id` int(11) NOT NULL,
+    `rol_nomb` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `rol` (`rol_id`, `rol_nomb`) VALUES
+(1, 'user'),
+(2, 'auxiliar'),
+(3, 'admin');
+
+CREATE TABLE `tipo_producto` (
+    `tipo_id` int(11) NOT NULL,
+    `tipo_nomb` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `tipo_producto` (`tipo_id`, `tipo_nomb`) VALUES
+(1, 'silla'),
+(2, 'mesa'),
+(3, 'bombo'),
+(4, 'triptico'),
+(5, 'lampara');
+
+CREATE TABLE `transaccion` (
+    `trans_id` int(11) NOT NULL,
+    `trans_idemple` int(11) NOT NULL,
+    `trans_docod` int(11) NOT NULL,
+    `trans_numdoc` int(11) NOT NULL,
+    `trans_usuid` int(11) NOT NULL,
+    `trans_valtotal` int(11) NOT NULL,
+    `trans_fecha` date NOT NULL,
+    `trans_estgarantia` varchar(45) NOT NULL,
+    `trans_Tipago` varchar(45) NOT NULL,
+    `trans_valpago` int(11) DEFAULT NULL,
+    `trans_desc` int(11) DEFAULT NULL,
+    `trans_impuesto` int(11) DEFAULT NULL,
+    `trans_Estado` varchar(45) DEFAULT NULL,
+    `trans_Obser` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `trans_producto` (
+    `tpro_id` int(11) NOT NULL,
+    `tpro_idtrans` int(11) NOT NULL,
+    `tpro_codpro` int(11) NOT NULL,
+    `tpro_cantxprod` int(11) NOT NULL,
+    `tpro_obser` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `usuario` (
+    `usu_id` int(11) NOT NULL,
+    `usu_rolid` int(11) NOT NULL,
+    `usu_Nomb` varchar(45) NOT NULL,
+    `usu_Clave` varchar(45) NOT NULL,
+    `usu_tel` int(11) NOT NULL,
+    `usu_correo` varchar(45) NOT NULL,
+    `usu_dire` varchar(45) DEFAULT NULL,
+    `usu_ciudad` varchar(20) NOT NULL,
+    `usu_descAdicional` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `usuario` (`usu_id`, `usu_rolid`, `usu_Nomb`, `usu_Clave`, `usu_tel`, `usu_correo`, `usu_dire`, `usu_ciudad`, `usu_descAdicional`) VALUES
+(1, 1, 'Helenn Nicole', 'helenn123', 0, 'hnmelo9@misena.edu.co', NULL, '', NULL),
+(2, 2, 'auxiliar', 'auxi123', 0, 'auxiliar@oli.com', NULL, '', NULL),
+(3, 1, 'Amdinistrador', 'admin123', 0, 'PRUEBA@PRUEBA.COM', NULL, '', NULL);
+
+ALTER TABLE `documentos`
+    ADD PRIMARY KEY (`doc_cod`);
+
+ALTER TABLE `envio`
+    ADD PRIMARY KEY (`env_cod`),
+    ADD KEY `env_idtrans` (`env_idtrans`,`env_idemple`);
+
+ALTER TABLE `productos`
+    ADD PRIMARY KEY (`pro_cod`),
+    ADD KEY `pro_idtipro` (`pro_idtipro`);
+
+ALTER TABLE `rol`
+    ADD PRIMARY KEY (`rol_id`);
+
+ALTER TABLE `tipo_producto`
+    ADD PRIMARY KEY (`tipo_id`);
+
+ALTER TABLE `transaccion`
+    ADD PRIMARY KEY (`trans_id`,`trans_idemple`),
+    ADD KEY `trans_docod` (`trans_docod`),
+    ADD KEY `trans_usuid` (`trans_usuid`),
+    ADD KEY `trans_idemple` (`trans_idemple`);
+
+ALTER TABLE `trans_producto`
+    ADD PRIMARY KEY (`tpro_id`),
+    ADD KEY `tpro_idtrans` (`tpro_idtrans`),
+    ADD KEY `tpro_codpro` (`tpro_codpro`);
+
+ALTER TABLE `usuario`
+    ADD PRIMARY KEY (`usu_id`),
+    ADD KEY `usu_rolid` (`usu_rolid`);
+
+ALTER TABLE `documentos`
+    MODIFY `doc_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `envio`
+    MODIFY `env_cod` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `productos`
+    MODIFY `pro_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `rol`
+    MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `tipo_producto`
+    MODIFY `tipo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `transaccion`
+    MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+ALTER TABLE `trans_producto`
+    MODIFY `tpro_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `usuario`
+    MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `envio`
+    ADD CONSTRAINT `envio_ibfk_1` FOREIGN KEY (`env_idtrans`,`env_idemple`) REFERENCES `transaccion` (`trans_id`, `trans_idemple`);
+
+ALTER TABLE `productos`
+    ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`pro_idtipro`) REFERENCES `tipo_producto` (`tipo_id`);
+
+ALTER TABLE `transaccion`
+    ADD CONSTRAINT `transaccion_ibfk_1` FOREIGN KEY (`trans_docod`) REFERENCES `documentos` (`doc_cod`),
+    ADD CONSTRAINT `transaccion_ibfk_2` FOREIGN KEY (`trans_usuid`) REFERENCES `usuario` (`usu_id`),
+    ADD CONSTRAINT `transaccion_ibfk_3` FOREIGN KEY (`trans_idemple`) REFERENCES `usuario` (`usu_id`);
+
+ALTER TABLE `trans_producto`
+    ADD CONSTRAINT `trans_producto_ibfk_1` FOREIGN KEY (`tpro_idtrans`) REFERENCES `transaccion` (`trans_id`),
+    ADD CONSTRAINT `trans_producto_ibfk_2` FOREIGN KEY (`tpro_codpro`) REFERENCES `productos` (`pro_cod`);
+
+ALTER TABLE `usuario`
+    ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`usu_rolid`) REFERENCES `rol` (`rol_id`);
+COMMIT;
