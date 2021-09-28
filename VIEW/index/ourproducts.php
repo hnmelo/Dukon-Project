@@ -1,10 +1,12 @@
-
+<div class="col-md-12">
+	<h3 class="title t-center">NUESTROS PRODUCTOS </h3>
+</div> <!-- /.col -->
 <div class="container">
 			<div class="row">
 				<div class="col-md-4 col-sm-4 sm-b-pad40">
 					<div class="feature-img">
 						<div class="img-wrap">
-							<img src="assets/images/feature-imges/producto1.jpeg" alt="" class="img-responsive">
+							<img src="<?php echo Conectar::ruta();?>ASSETS/images/feature-imges/producto1.jpeg" alt="" class="img-responsive">
 							<div class="overley">
 								<a href="#"><i class="fa fa-link"></i></a>
 							</div>
@@ -19,7 +21,7 @@
 			<div class="col-md-4 col-sm-4 sm-b-pad40">
 				<div class="feature-img">
 					<div class="img-wrap">
-						<img src="assets/images/feature-imges/producto2.jpeg" alt="" class="img-responsive">
+						<img src="<?php echo Conectar::ruta();?>ASSETS/images/feature-imges/producto2.jpeg" alt="" class="img-responsive">
 						<div class="overley">
 							<a href="#"><i class="fa fa-link"></i></a>
 						</div>
@@ -37,7 +39,7 @@
 			<div class="col-md-4 col-sm-4">
 				<div class="feature-img">
 					<div class="img-wrap">
-						<img src="assets/images/feature-imges/producto3.jpeg" alt="" class="img-responsive">
+						<img src="<?php echo Conectar::ruta();?>ASSETS/images/feature-imges/producto3.jpeg" alt="" class="img-responsive">
 						<div class="overley">
 							<a href="#"><i class="fa fa-link"></i></a>
 						</div>

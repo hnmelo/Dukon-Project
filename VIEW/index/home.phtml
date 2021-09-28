@@ -1,50 +1,22 @@
 <!doctype html>
 <html lang="es">
-    <?php 
-        $in1 = Conectar::ruta()."VIEW/index/header.php";
-        include($in1); 
-    ?>
+        <?php include "header.php";?>
     <body>
     <div class="main-container">
-        <?php 
-            $in2 = Conectar::ruta()."VIEW/index/header2.php";
-            include($in2); 
-        ?>
+        <?php include "header2.php";?>
         <section id="slideshow" class="slideshow">
-            <?php
-                $in3 = Conectar::ruta()."VIEW/index/slideshow.php"; 
-                include($in3); 
-            ?>
+            <?php include "slideshow.php"; ?>
         </section>
-        <div class="col-md-12">
-            <h3 class="title t-center">NUESTROS PRODUCTOS </h3>
-        </div> <!-- /.col -->
+    </div> <!-- /.container -->
         <section class="feature-top">
-            <?php include("VIEW/index/ourproducts.php") ?>
+            <?php include "ourproducts.php";?>
         </section>
         <section class="drk-bg pad80">
-            <?php include("VIEW/index/whoweare.php") ?>
+            <?php include "whoweare.php";?>
         </section>
         <footer>
-            <?php include("VIEW/index/footer.php") ?>
+            <?php include "footer.php";?>
         </footer>
-
-        <!-- load jquery -->
-        <script src="ASSETS/js/jquery-2.2.2.min.js"></script>
-        <!-- load bootstrap -->
-        <script src="ASSETS/js/bootstrap.min.js"></script>
-
-        <!-- revolution slider js files -->
-        <script src="ASSETS/js/jquery.themepunch.tools.min.js"></script>
-        <script src="ASSETS/js/jquery.themepunch.revolution.min.js"></script>
-        <!-- odometer js -->
-        <script src="ASSETS/js/jquery.appear.js"></script>
-        <!-- countTo js -->
-
-        <script type="text/javascript" src="ASSETS/js/extensions/revolution.extension.slideanims.min.js"></script>
-        <script type="text/javascript" src="ASSETS/js/extensions/revolution.extension.video.min.js"></script>
-
-        <!-- load theme js script file -->
-        <script src="ASSETS/js/itl_script.js"></script>
+            <?php include "javascripts.php";?>
     </body>
 </html>

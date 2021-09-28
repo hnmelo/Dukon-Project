@@ -3,7 +3,7 @@
         <ul>
             <!-- slide 1 -->
             <li data-transition="random">
-                <img src="assets/images/slideshow/fondo.jpeg" alt="slider" width="1920" height="1280">
+                <img src=<?php echo Conectar::ruta().'ASSETS/images/slideshow/fondo.jpeg';?> alt="slider" width="1920" height="1280">
 
                 <!-- layer no 1 -->
                 <div class="tp-caption slide-title color tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-150" data-whitespace="nowrap" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-start="1800" data-transform_in="y:-50;s:700;">
@@ -32,5 +32,3 @@
         <div class="c2a bg-color pad60">
         </div> <!-- /.row -->
     </div> <!-- /.c2a /.bg-color -->
-    </div> <!-- /.container -->
-</section>

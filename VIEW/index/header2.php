@@ -9,9 +9,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="./index.html">
+                <a class="navbar-brand" href=<?php echo Conectar::ruta().'VIEW/index/home.phtml';?>>
                     <div class="logo">
-                        <img src="<?php echo Conectar::ruta();?>ASSETS/images/logo/logo.png" class="img-responsive" alt="Dukon" style="width: 220px; height:60px;">
+                        <img src=<?php echo Conectar::ruta().'ASSETS/images/logo/logo.png';?> class="img-responsive" alt="Dukon" style="width: 220px; height:60px;">
                     </div>
                 </a>
             </div>
@@ -22,13 +22,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">HOME</a>
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo Conectar::ruta();?>VIEW/pages/auth.php" class="dropdown-toggle">INGRESO</a>
+                        <a href=<?php echo Conectar::ruta().'VIEW/pages/auth.php';?> class="dropdown-toggle">INGRESO</a>
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo Conectar::ruta();?>VIEW/pages/project.html" class="dropdown-toggle">NUESTRO PROYECTO</a>
+                        <a href=<?php echo Conectar::ruta().'VIEW/pages/project.phtml';?> class="dropdown-toggle">NUESTRO PROYECTO</a>
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo Conectar::ruta();?>VIEW/pages/team.html" class="dropdown-toggle">GRUPO EJECUTOR</a>
+                        <a href=<?php echo Conectar::ruta().'VIEW/pages/team.phtml';?> class="dropdown-toggle">GRUPO EJECUTOR</a>
                 </ul>
             </div><!-- /.nav-collapse -->
         </nav>
