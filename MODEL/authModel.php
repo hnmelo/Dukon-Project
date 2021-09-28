@@ -1,38 +1,47 @@
 <?php
-
-require("config.php");
+// require("config.php");
 
     class auth extends Conectar{
 
-        public $location;
+        private $pro;
+		public function __construct(){
+			$this->pro=array();
+        }
 
-        public function login($correoUsu, $claveUsu){
-            Session_start();
+            public function login($correoUsu, $claveUsu){
 
-            $conexion = parent::con();
-            $consulta = $conexion->prepare("SELECT usu_id, usu_rolid, usu_Nomb, usu_Clave, usu_correo FROM usuario WHERE usu_correo ='$correoUsu'");
-            $result = $mysqli->query(consulta);
-            $num = $result->num_rows;
+                Session_start();
 
-            if($num > 0){
-                $row = $result->fect_assoc();
-                $pass_bd = $row['usu_Clave'];
-                $pass_c = sha1($claveUsu);
+                $conexion = parent::con();
+                $consulta = $conexion->prepare("SELECT usu_id, usu_rolid, usu_Nomb, usu_Clave, usu_correo FROM usuario WHERE usu_correo ='$correoUsu'");
+                // $result = $conexion->prepare($consulta);
+                $consulta->execute();
+                while($conexion=$consulta->fetch()){
+                    $this->pro[]=$conexion;}
 
-                if($pass_bd == $pass_c){
-                    $_SESSION['id'] = $row['usu_id'];
-                    $_SESSION['Nombre'] = $row['usu_Nombre'];
-                    $_SESSION['Correo'] = $row['usu_correo'];
+                    return $this->pro;
+                // $num = mysqli_num_rows($result);
 
-                    return $location;
+                if($this->pro > 0){
+                    $row = $result->fect_assoc();
+                    $pass_bd = $row['usu_Clave'];
+                    $pass_c = sha1($claveUsu);
 
-                } else {
-                    echo "La contraseña no coincide";
+                    if($pass_bd == $pass_c){
+
+                        $_SESSION['id'] = $row['usu_id'];
+                        $_SESSION['Nombre'] = $row['usu_Nombre'];
+                        $_SESSION['Correo'] = $row['usu_correo'];
+
+                        header("Location: dashadmin.php");
+
+                    } else {
+                        echo "La contraseña no coincide";
+                    }
+
+                } else{
+                    echo "No existe usuario";
                 }
-
-            } else{
-                echo "No existe usuario";
             }
         }
-    }
 ?>
