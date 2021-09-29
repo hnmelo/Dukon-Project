@@ -24,24 +24,28 @@
 				<div class="signup">
 					<h2 class="form-title" id="signup"><span>or</span>Registrarse</h2>
 					<div class="form-holder">
-						<form action="../../controller/auth.controller.php?signup" method="post">
+						<form action="<?php echo Conectar::ruta();?>c-signup/" method="post">
 						<input type="text" class="input" name="nombre" placeholder="Nombre:" />
-						<input type="email" class="input" name="correo" placeholder="Correo:" />
-						<input type="password" class="input" name="clave" placeholder="Contraseña" min='6' />
+						<input type="email" class="input" name="email" placeholder="Correo:" />
+						<input type="password" class="input" name="password" placeholder="Contraseña" min='6' />
 						<input type="password" class="input" name="confclave" min='6' placeholder="Confirmar constraseña" />
-						<button class="submit-btn"> Sign up </button>
+						<input type='hidden' name='signup'>
+						<input type='submit' class="submit-btn" value='Ingresar'>
+						<!-- <button class="submit-btn"> Sign up </button> -->
 					</div>
 				</form>
 			</div>
-			<form action="../../controller/auth.controller.php?login" method="post">
+			<form action="<?php echo Conectar::ruta();?>c-login/" method="POST">
 			<div class="login slide-up">
 				<div class="center">
 					<h2 class="form-title" id="login"><span>or</span>Ingresar</h2>
 					<div class="form-holder">
-						<input type="email" class="input" name="correo" placeholder="Correo:" />
-						<input type="password" class="input" name="clave" placeholder="Clave" />
+						<input type="email" class="input" id="email" name="email" placeholder="Correo:" />
+						<input type="password" class="input" id="password" name="password" placeholder="Clave" />
 					</div>
-					<button Type="submit" class="submit-btn">Entrar</button>
+					<input type='hidden' name='login'>
+					<input type='submit' class="submit-btn" value='Ingresar'>
+					<!-- <button Type="submit" class="submit-btn">Entrar</button> -->
 				</form>
 				</div>
 			</div>
