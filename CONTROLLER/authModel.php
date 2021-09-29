@@ -32,7 +32,7 @@
 
                 if($_SESSION['Rol'] == 3)
                 {
-                    header("Location: ../VIEW/admin/dashadmin.phtml");
+                    header("Location: ../VIEW/admin/dashadmin.php");
                 } else {
                     if($_SESSION['Rol'] == 2)
                     {

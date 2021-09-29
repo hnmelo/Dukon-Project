@@ -9,5 +9,10 @@
 	if(is_file("CONTROLLER/".$accion."Controller.php"))
 		require_once("CONTROLLER/".$accion."Controller.php");
 	else
-		require_once("CONTROLLER/errorController.php");
+		if(is_file("MODEL/".$accion."Model.php"))
+			require_once("CONTROLLER/".$accion."Controller.php");
+		else
+			require_once("CONTROLLER/errorController.php");
+		
+	
 ?>
