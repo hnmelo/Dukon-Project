@@ -1,8 +1,6 @@
 <?php 
   require_once "../../MODEL/config.php";
 
-      session_start();
-
       $model = new Conectar;
       $conexion = $model->con();
       $sql = "SELECT rol_nomb FROM rol JOIN usuario ON usuario.usu_rolid = rol.rol_id WHERE usuario.usu_rolid = 3";
@@ -11,6 +9,7 @@
       $fila = $consulta->fetch();
 
       if($fila>0){
+          session_start();
           $_SESSION['Rol_admin'] = $fila['rol_nomb'];
       }else {
           echo "Algo no funciona bien:(";
@@ -18,12 +17,6 @@
 
       $nombre = $_SESSION['Nombre'];
       $roladmin = $_SESSION['Rol_admin'];
-
-      if(!isset($_SESSION['login'])){
-        header("Location: ../pages/auth.php");
-      }
-
-      
 ?>
 <!DOCTYPE html>
 <html lang="en">

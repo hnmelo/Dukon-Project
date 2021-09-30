@@ -59,5 +59,21 @@
                 echo "El usuario está registrado correctamente";
             }
         }
+
+        public function roles(){
+            $model = new Conectar;
+            $conexion = $model->con();
+            $sql = "SELECT rol_nomb FROM rol JOIN usuario ON usuario.usu_rolid = rol.rol_id WHERE usuario.usu_rolid = 3";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            $fila = $consulta->fetch();
+
+            if($fila>0){
+                session_start();
+                $_SESSION['Rol_admin'] = $fila['rol_nomb'];
+            }else {
+                echo "Algo no funciona bien:(";
+            }
+        }
     }
 ?>
